@@ -1,0 +1,11 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M24 4C24 4 28 8 36 8C36 28 28 40 24 44C20 40 12 28 12 8C20 8 24 4 24 4Z" fill="currentColor" stroke="none">
+    <animate attributeName="d" dur="1s" repeatCount="indefinite"
+      values="M24 4C24 4 28 8 36 8C36 28 28 40 24 44C20 40 12 28 12 8C20 8 24 4 24 4Z;
+              M24 8C24 8 28 12 36 12C36 32 28 44 24 48C20 44 12 32 12 12C20 12 24 8 24 8Z;
+              M24 4C24 4 28 8 36 8C36 28 28 40 24 44C20 40 12 28 12 8C20 8 24 4 24 4Z"
+      calcMode="spline"
+      keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+    />
+  </path>
+</svg> 
