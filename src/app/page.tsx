@@ -7,10 +7,17 @@ import type { Todo } from "@/hooks/useTodos";
 import { useTodos } from "@/hooks/useTodos";
 import { useState } from "react";
 
+interface ApiError {
+  message: string;
+  status: number;
+}
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const {
     todos,
+    error: fetchError,
     createTodo,
     updateTodo,
     deleteTodo,
@@ -19,35 +26,48 @@ export default function Home() {
     deleteSubTodo,
   } = useTodos();
 
-  const handleAddTodo = (
+  const handleError = (error: ApiError) => {
+    setError(error.message || "오류가 발생했습니다.");
+    setTimeout(() => setError(null), 3000);
+  };
+
+  const handleAddTodo = async (
     title: string,
     content: string,
     dueDate: Date | null,
     startDate: Date | null,
     hasStartDate: boolean
   ) => {
-    createTodo({
-      title,
-      content,
-      completed: false,
-      due_date: dueDate?.toISOString() || null,
-      start_date: startDate?.toISOString() || null,
-      has_start_date: hasStartDate,
-    });
-    setIsModalOpen(false);
-  };
-
-  const handleToggleTodo = (id: number) => {
-    const todo = todos?.find((t: Todo) => t.id === id);
-    if (todo) {
-      updateTodo({
-        id,
-        completed: !todo.completed,
+    try {
+      await createTodo({
+        title,
+        content,
+        completed: false,
+        due_date: dueDate?.toISOString() || null,
+        start_date: startDate?.toISOString() || null,
+        has_start_date: hasStartDate,
       });
+      setIsModalOpen(false);
+    } catch (error) {
+      handleError(error as ApiError);
     }
   };
 
-  const handleEditTodo = (
+  const handleToggleTodo = async (id: number) => {
+    try {
+      const todo = todos?.find((t: Todo) => t.id === id);
+      if (todo) {
+        await updateTodo({
+          id,
+          completed: !todo.completed,
+        });
+      }
+    } catch (error) {
+      handleError(error as ApiError);
+    }
+  };
+
+  const handleEditTodo = async (
     id: number,
     title: string,
     content: string,
@@ -55,51 +75,72 @@ export default function Home() {
     startDate: Date | null,
     hasStartDate: boolean
   ) => {
-    updateTodo({
-      id,
-      title,
-      content,
-      due_date: dueDate?.toISOString() || null,
-      start_date: startDate?.toISOString() || null,
-      has_start_date: hasStartDate,
-    });
+    try {
+      await updateTodo({
+        id,
+        title,
+        content,
+        due_date: dueDate?.toISOString() || null,
+        start_date: startDate?.toISOString() || null,
+        has_start_date: hasStartDate,
+      });
+    } catch (error) {
+      handleError(error as ApiError);
+    }
   };
 
-  const handleAddSubTodo = (
+  const handleAddSubTodo = async (
     parentId: number,
     title: string,
     content: string
   ) => {
-    createSubTodo({
-      todo_id: parentId,
-      title,
-      content,
-      completed: false,
-    });
-  };
-
-  const handleToggleSubTodo = (parentId: number, subId: number) => {
-    const todo = todos?.find((t: Todo) => t.id === parentId);
-    const subTodo = todo?.sub_todos.find(
-      (s: Todo["sub_todos"][0]) => s.id === subId
-    );
-    if (subTodo) {
-      updateSubTodo({
-        id: subId,
-        todoId: parentId,
-        completed: !subTodo.completed,
+    try {
+      await createSubTodo({
+        todo_id: parentId,
+        title,
+        content,
+        completed: false,
       });
+    } catch (error) {
+      handleError(error as ApiError);
     }
   };
 
-  const handleDeleteSubTodo = (parentId: number, subId: number) => {
-    deleteSubTodo({ id: subId, todoId: parentId });
+  const handleToggleSubTodo = async (parentId: number, subId: number) => {
+    try {
+      const todo = todos?.find((t: Todo) => t.id === parentId);
+      const subTodo = todo?.sub_todos.find(
+        (s: Todo["sub_todos"][0]) => s.id === subId
+      );
+      if (subTodo) {
+        await updateSubTodo({
+          id: subId,
+          todoId: parentId,
+          completed: !subTodo.completed,
+        });
+      }
+    } catch (error) {
+      handleError(error as ApiError);
+    }
+  };
+
+  const handleDeleteSubTodo = async (parentId: number, subId: number) => {
+    try {
+      await deleteSubTodo({ id: subId, todoId: parentId });
+    } catch (error) {
+      handleError(error as ApiError);
+    }
   };
 
   return (
     <main className="min-h-screen bg-white text-orange-500 p-8">
       <div className="max-w-2xl mx-auto">
         <Header onAddClick={() => setIsModalOpen(true)} />
+        {(error || fetchError) && (
+          <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
+            {error || fetchError?.message}
+          </div>
+        )}
         <TodoList
           todos={todos || []}
           onToggle={handleToggleTodo}
