@@ -4,6 +4,7 @@ import EditTodoModal from "./EditTodoModal";
 
 interface SubTodo {
   id: number;
+  todo_id: number;
   title: string;
   content: string;
   completed: boolean;
@@ -14,10 +15,10 @@ interface TodoItemProps {
   title: string;
   content: string;
   completed: boolean;
-  dueDate: Date | null;
-  startDate: Date | null;
-  hasStartDate: boolean;
-  subItems: SubTodo[];
+  due_date: string | null;
+  start_date: string | null;
+  has_start_date: boolean;
+  sub_todos: SubTodo[];
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
   onEdit: (
@@ -38,10 +39,10 @@ const TodoItem = memo(function TodoItem({
   title,
   content,
   completed,
-  dueDate,
-  startDate,
-  hasStartDate,
-  subItems,
+  due_date,
+  start_date,
+  has_start_date,
+  sub_todos,
   onToggle,
   onDelete,
   onEdit,
@@ -74,7 +75,7 @@ const TodoItem = memo(function TodoItem({
   return (
     <>
       <div className="space-y-4">
-        <div className="p-4 bg-orange-50 hover:bg-orange-100 hover:border-orange-300 transition-all border border-orange-200 rounded-lg font-pretendard">
+        <div className="p-4 bg-white hover:bg-orange-50 hover:bg-opacity-10 hover:border-orange-300 transition-all border border-orange-200 rounded-lg font-pretendard">
           <div className="flex items-start gap-4">
             <button
               onClick={() => onToggle(id)}
@@ -98,13 +99,13 @@ const TodoItem = memo(function TodoItem({
                 {content}
               </p>
               <div className="mt-2 space-x-2 text-sm text-orange-400">
-                {hasStartDate && startDate && (
-                  <span>시작: {formatDate(startDate)}</span>
+                {has_start_date && start_date && (
+                  <span>시작: {formatDate(new Date(start_date))}</span>
                 )}
-                {dueDate && (
+                {due_date && (
                   <>
-                    {hasStartDate && startDate && <span>•</span>}
-                    <span>마감: {formatDate(dueDate)}</span>
+                    {has_start_date && start_date && <span>•</span>}
+                    <span>마감: {formatDate(new Date(due_date))}</span>
                   </>
                 )}
               </div>
@@ -126,7 +127,7 @@ const TodoItem = memo(function TodoItem({
           </div>
 
           <div className="mt-4 pl-10">
-            {subItems.map((subItem) => (
+            {sub_todos.map((subItem) => (
               <div
                 key={subItem.id}
                 className="flex items-start gap-4 p-3 bg-orange-50/50 border border-orange-100 rounded-lg mb-2"
@@ -217,9 +218,9 @@ const TodoItem = memo(function TodoItem({
         }
         initialTitle={title}
         initialContent={content}
-        initialDueDate={dueDate}
-        initialStartDate={startDate}
-        initialHasStartDate={hasStartDate}
+        initialDueDate={due_date ? new Date(due_date) : null}
+        initialStartDate={start_date ? new Date(start_date) : null}
+        initialHasStartDate={has_start_date}
       />
     </>
   );

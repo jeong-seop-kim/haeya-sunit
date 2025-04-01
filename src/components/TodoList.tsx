@@ -3,6 +3,7 @@ import TodoItem from "./TodoItem";
 
 interface SubTodo {
   id: number;
+  todo_id: number;
   title: string;
   content: string;
   completed: boolean;
@@ -13,10 +14,10 @@ interface Todo {
   title: string;
   content: string;
   completed: boolean;
-  dueDate: Date | null;
-  startDate: Date | null;
-  hasStartDate: boolean;
-  subItems: SubTodo[];
+  due_date: string | null;
+  start_date: string | null;
+  has_start_date: boolean;
+  sub_todos: SubTodo[];
 }
 
 interface TodoListProps {
@@ -47,7 +48,7 @@ const TodoList = memo(function TodoList({
 }: TodoListProps) {
   return (
     <div className="space-y-4">
-      {todos.map((todo) => (
+      {todos?.map((todo) => (
         <TodoItem
           key={todo.id}
           {...todo}
