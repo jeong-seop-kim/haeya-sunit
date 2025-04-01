@@ -1,7 +1,15 @@
 import { useTodoStore } from "@/store/todo";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-interface Todo {
+export interface SubTodo {
+  id: number;
+  todo_id: number;
+  title: string;
+  content: string;
+  completed: boolean;
+}
+
+export interface Todo {
   id: number;
   title: string;
   content: string;
@@ -10,14 +18,6 @@ interface Todo {
   start_date: string | null;
   has_start_date: boolean;
   sub_todos: SubTodo[];
-}
-
-interface SubTodo {
-  id: number;
-  todo_id: number;
-  title: string;
-  content: string;
-  completed: boolean;
 }
 
 export function useTodos() {

@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import TodoList from "@/components/TodoList";
 import TodoModal from "@/components/TodoModal";
+import type { Todo } from "@/hooks/useTodos";
 import { useTodos } from "@/hooks/useTodos";
 import { useState } from "react";
 
@@ -37,7 +38,7 @@ export default function Home() {
   };
 
   const handleToggleTodo = (id: number) => {
-    const todo = todos?.find((t) => t.id === id);
+    const todo = todos?.find((t: Todo) => t.id === id);
     if (todo) {
       updateTodo({
         id,
@@ -78,8 +79,10 @@ export default function Home() {
   };
 
   const handleToggleSubTodo = (parentId: number, subId: number) => {
-    const todo = todos?.find((t) => t.id === parentId);
-    const subTodo = todo?.sub_todos.find((s) => s.id === subId);
+    const todo = todos?.find((t: Todo) => t.id === parentId);
+    const subTodo = todo?.sub_todos.find(
+      (s: Todo["sub_todos"][0]) => s.id === subId
+    );
     if (subTodo) {
       updateSubTodo({
         id: subId,
@@ -87,6 +90,10 @@ export default function Home() {
         completed: !subTodo.completed,
       });
     }
+  };
+
+  const handleDeleteSubTodo = (parentId: number, subId: number) => {
+    deleteSubTodo({ id: subId, todoId: parentId });
   };
 
   return (
@@ -100,7 +107,7 @@ export default function Home() {
           onEdit={handleEditTodo}
           onAddSubTodo={handleAddSubTodo}
           onToggleSubTodo={handleToggleSubTodo}
-          onDeleteSubTodo={deleteSubTodo}
+          onDeleteSubTodo={handleDeleteSubTodo}
         />
       </div>
 
