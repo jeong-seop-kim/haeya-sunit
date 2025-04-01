@@ -9,7 +9,7 @@ const Header = memo(function Header({ onAddClick }: HeaderProps) {
   return (
     <div className="flex justify-between items-center mb-8">
       <div className="flex items-center">
-        <Logo />
+        <Logo className="" />
       </div>
       <button
         onClick={onAddClick}
