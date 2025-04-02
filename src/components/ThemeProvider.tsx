@@ -10,6 +10,7 @@ export default function ThemeProvider({
 }) {
   const theme = useThemeStore((state) => state.theme);
   const [mounted, setMounted] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("light");
 
   // 초기 테마 설정
   useEffect(() => {
@@ -18,10 +19,12 @@ export default function ThemeProvider({
       const parsed = JSON.parse(savedTheme);
       if (parsed.state.theme === "dark") {
         document.documentElement.classList.add("dark");
+        setCurrentTheme("dark");
       }
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.documentElement.classList.add("dark");
       useThemeStore.setState({ theme: "dark" });
+      setCurrentTheme("dark");
     }
     setMounted(true);
   }, []);
@@ -30,6 +33,7 @@ export default function ThemeProvider({
   useEffect(() => {
     if (!mounted) return;
 
+    setCurrentTheme(theme);
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -41,5 +45,5 @@ export default function ThemeProvider({
     return null;
   }
 
-  return <>{children}</>;
+  return <div className={`${currentTheme} w-full h-full`}>{children}</div>;
 }

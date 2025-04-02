@@ -26,9 +26,9 @@ export default function Navigation() {
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
+            className={`flex items-center space-x-3 px-4 py-2 rounded-lg theme-text transition-colors ${
               pathname === item.href
-                ? "bg-orange-50 text-orange-600"
+                ? " text-orange-600 "
                 : "hover:bg-orange-50"
             }`}
           >
