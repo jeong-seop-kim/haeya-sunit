@@ -25,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
+      <body
+        className={`${inter.variable} antialiased bg-white dark:bg-gray-900 transition-colors duration-200`}
+      >
         <Providers>
           <div className="flex min-h-screen">
             <Navigation />
