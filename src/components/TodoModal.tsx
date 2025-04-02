@@ -50,8 +50,16 @@ export default function TodoModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg w-full max-w-md border border-orange-200 font-pretendard">
+    <div
+      className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ${
+        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <div
+        className={` dark:bg-gray-800 rounded-lg p-6 w-full max-w-md transform transition-all ${
+          isOpen ? "scale-100" : "scale-95"
+        }`}
+      >
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-orange-600">
             새로운 할 일
