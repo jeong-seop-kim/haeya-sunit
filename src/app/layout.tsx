@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "해야",
     images: [
       {
-        url: "https://ibb.co/HfX0WHP9",
+        url: "https://haeya-sunit.vercel.app/sun.png",
         alt: "해야 로고",
       },
     ],
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "해야",
     description: "해야 할 일을 관리하는 애플리케이션",
-    images: ["https://ibb.co/HfX0WHP9"],
+    images: ["https://haeya-sunit.vercel.app/sun.png"],
   },
   viewport: {
     width: "device-width",
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "https://ibb.co/HfX0WHP9",
-    apple: "https://ibb.co/HfX0WHP9",
+    icon: "https://haeya-sunit.vercel.app/sun.png",
+    apple: "https://haeya-sunit.vercel.app/sun.png",
   },
 };
 
