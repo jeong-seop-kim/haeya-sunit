@@ -10,23 +10,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Haeya Sunit",
-  description: "할 일 관리 애플리케이션",
+  title: "해야",
+  description: "해야 할 일을 관리하는 애플리케이션",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "#111827" },
   ],
   openGraph: {
-    title: "Haeya Sunit",
-    description: "할 일 관리 애플리케이션",
+    title: "해야",
+    description: "해야 할 일을 관리하는 애플리케이션",
     url: "https://haeya-sunit.vercel.app",
-    siteName: "Haeya Sunit",
+    siteName: "해야",
     images: [
       {
         url: "/sun.png",
         width: 1200,
         height: 630,
-        alt: "Haeya Sunit Logo",
+        alt: "해야 로고",
       },
     ],
     locale: "ko_KR",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Haeya Sunit",
-    description: "할 일 관리 애플리케이션",
+    title: "해야",
+    description: "해야 할 일을 관리하는 애플리케이션",
     images: ["/sun.png"],
   },
   viewport: {
