@@ -20,16 +20,16 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-64 h-screen  border-r border-orange-100 p-4">
+    <nav className="w-64 h-screen bg-white dark:bg-gray-900 border-r border-orange-100 dark:border-orange-900 p-4">
       <div className="space-y-2">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center space-x-3 px-4 py-2 rounded-lg theme-text transition-colors ${
+            className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
               pathname === item.href
-                ? " text-orange-600 "
-                : "hover:bg-orange-50"
+                ? "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
+                : "dark:text-white hover:bg-orange-100 dark:hover:bg-white hover:text-gray-900 dark:hover:text-gray-900"
             }`}
           >
             <span>{item.icon}</span>

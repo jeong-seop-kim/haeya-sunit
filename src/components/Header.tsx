@@ -7,7 +7,7 @@ interface HeaderProps {
 
 const Header = memo(function Header({ onAddClick }: HeaderProps) {
   return (
-    <div className=" dark:bg-gray-900 p-4 rounded-lg shadow-sm mb-6">
+    <div className=" dark:bg-gray-900 p-4 mb-6">
       <div className="flex justify-between items-center mb-8">
         <div className="flex items-center">
           <Logo className="" />
