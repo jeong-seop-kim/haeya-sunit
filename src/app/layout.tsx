@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "해야",
     images: [
       {
-        url: "/sun.png",
+        url: "https://imgur.com/a/o8kLyty",
         width: 1200,
         height: 630,
         alt: "해야 로고",
