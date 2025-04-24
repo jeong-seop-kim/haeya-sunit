@@ -28,7 +28,8 @@ export default function Navigation() {
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
+            draggable={false}
+            className={`select-none flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
               pathname === item.href
                 ? "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
                 : "text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white hover:text-gray-900 dark:hover:text-gray-900"

@@ -52,11 +52,11 @@ export default function TodoModal({
   return (
     <div
       className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ${
-        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        isOpen ? "" : " pointer-events-none"
       }`}
     >
       <div
-        className={` dark:bg-gray-800 rounded-lg p-6 w-full max-w-md transform transition-all ${
+        className={`bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md transform transition-all ${
           isOpen ? "scale-100" : "scale-95"
         }`}
       >
