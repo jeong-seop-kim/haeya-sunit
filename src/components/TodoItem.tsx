@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
-import CheckIcon from "./CheckIcon";
 import EditTodoModal from "./EditTodoModal";
+import CheckIcon from "./icons/CheckIcon";
 
 interface SubTodo {
   id: number;

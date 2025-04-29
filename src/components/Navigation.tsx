@@ -2,19 +2,42 @@
 import { useAuthStore } from "@/store/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+import BeforeIcon from "./icons/BeforeIcon";
+import ListIcon from "./icons/ListIcon";
+import SettingIcon from "./icons/SettingIcon";
+import StatisticsIcon from "./icons/StatisticsIcon";
+import TodayIcon from "./icons/TodayIcon";
+import UserIcon from "./icons/UserIcon";
 
 interface NavItem {
   href: string;
   label: string;
-  icon: string;
+  icon: ReactNode;
 }
 
 const navItems: NavItem[] = [
-  { href: "/today", label: "오늘의 투두", icon: "🔥" },
-  { href: "/overdue", label: "지난 투두", icon: "⏳" },
-  { href: "/all", label: "전체 보기", icon: "📋" },
-  { href: "/stats", label: "통계", icon: "📊" },
-  { href: "/settings", label: "설정", icon: "⚙️" },
+  {
+    href: "/today",
+    label: "오늘의 투두",
+    icon: <TodayIcon className="w-6 h-6" />,
+  },
+  {
+    href: "/overdue",
+    label: "지난 투두",
+    icon: <BeforeIcon className="w-6 h-6" />,
+  },
+  { href: "/all", label: "전체 보기", icon: <ListIcon className="w-6 h-6" /> },
+  {
+    href: "/stats",
+    label: "통계",
+    icon: <StatisticsIcon className="w-6 h-6" />,
+  },
+  {
+    href: "/settings",
+    label: "설정",
+    icon: <SettingIcon className="w-6 h-6" />,
+  },
 ];
 
 export default function Navigation() {
@@ -38,7 +61,7 @@ export default function Navigation() {
               }`}
             >
               <span>{item.icon}</span>
-              <span>{item.label}</span>
+              <span className="font-medium">{item.label}</span>
             </Link>
           ))}
           {user && (
@@ -50,7 +73,9 @@ export default function Navigation() {
                   : "text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white hover:text-gray-900 dark:hover:text-gray-900"
               }`}
             >
-              <span>👤</span>
+              <span>
+                <UserIcon className="w-6 h-6" />
+              </span>
               <span>프로필</span>
             </Link>
           )}
@@ -72,7 +97,7 @@ export default function Navigation() {
               }`}
             >
               <span className="text-xl">{item.icon}</span>
-              <span className="text-xs">{item.label}</span>
+              <span className="font-medium text-xs">{item.label}</span>
             </Link>
           ))}
           {user && (
@@ -84,7 +109,9 @@ export default function Navigation() {
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
-              <span className="text-xl">👤</span>
+              <span className="text-xl">
+                <UserIcon className="w-6 h-6" />
+              </span>
               <span className="text-xs">프로필</span>
             </Link>
           )}
