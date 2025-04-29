@@ -127,7 +127,7 @@ const TodoItem = memo(function TodoItem({
           </div>
 
           <div className="mt-4 pl-10">
-            {sub_todos.map((subItem) => (
+            {sub_todos?.map((subItem) => (
               <div
                 key={subItem.id}
                 className="flex items-start gap-4 p-3 bg-orange-50/50 border border-orange-100 rounded-lg mb-2"

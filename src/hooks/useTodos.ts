@@ -1,6 +1,8 @@
 import { useTodoStore } from "@/store/todo";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export interface SubTodo {
   id: number;
@@ -28,6 +30,8 @@ interface ApiError {
 
 export function useTodos() {
   const queryClient = useQueryClient();
+  const supabase = createClientComponentClient();
+  const router = useRouter();
   const setTodos = useTodoStore((state) => state.setTodos);
   const addTodo = useTodoStore((state) => state.addTodo);
   const updateTodo = useTodoStore((state) => state.updateTodo);
@@ -40,7 +44,19 @@ export function useTodos() {
     queryKey: ["todos"],
     queryFn: async () => {
       try {
-        const { data } = await axios.get<Todo[]>("/api/todos");
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        const { data } = await axios.get<Todo[]>("/api/todos", {
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
+        });
         setTodos(data);
         return data;
       } catch (error) {
@@ -60,7 +76,19 @@ export function useTodos() {
   const createTodoMutation = useMutation({
     mutationFn: async (newTodo: Omit<Todo, "id" | "sub_todos">) => {
       try {
-        const { data } = await axios.post<Todo>("/api/todos", newTodo);
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        const { data } = await axios.post<Todo>("/api/todos", newTodo, {
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
+        });
         return data;
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -82,10 +110,23 @@ export function useTodos() {
   const updateTodoMutation = useMutation({
     mutationFn: async ({ id, ...updates }: Partial<Todo> & { id: number }) => {
       try {
-        const { data } = await axios.put<Todo>(`/api/todos`, {
-          id,
-          ...updates,
-        });
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        const { data } = await axios.put<Todo>(
+          `/api/todos`,
+          { id, ...updates },
+          {
+            headers: {
+              Authorization: `Bearer ${session.access_token}`,
+            },
+          }
+        );
         return data;
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -107,7 +148,19 @@ export function useTodos() {
   const deleteTodoMutation = useMutation({
     mutationFn: async (id: number) => {
       try {
-        await axios.delete(`/api/todos?id=${id}`);
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        await axios.delete(`/api/todos?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
+        });
         return id;
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -129,10 +182,23 @@ export function useTodos() {
   const createSubTodoMutation = useMutation({
     mutationFn: async ({ todo_id, ...newSubTodo }: Omit<SubTodo, "id">) => {
       try {
-        const { data } = await axios.post<SubTodo>("/api/sub-todos", {
-          ...newSubTodo,
-          todo_id,
-        });
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        const { data } = await axios.post<SubTodo>(
+          "/api/sub-todos",
+          { ...newSubTodo, todo_id },
+          {
+            headers: {
+              Authorization: `Bearer ${session.access_token}`,
+            },
+          }
+        );
         return data;
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -159,10 +225,23 @@ export function useTodos() {
       ...updates
     }: Partial<SubTodo> & { id: number; todoId: number }) => {
       try {
-        const { data } = await axios.put<SubTodo>("/api/sub-todos", {
-          id,
-          ...updates,
-        });
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        const { data } = await axios.put<SubTodo>(
+          "/api/sub-todos",
+          { id, ...updates },
+          {
+            headers: {
+              Authorization: `Bearer ${session.access_token}`,
+            },
+          }
+        );
         return { ...data, todoId };
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -185,7 +264,19 @@ export function useTodos() {
   const deleteSubTodoMutation = useMutation({
     mutationFn: async ({ id, todoId }: { id: number; todoId: number }) => {
       try {
-        await axios.delete(`/api/sub-todos?id=${id}`);
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          router.push("/login");
+          throw new Error("로그인이 필요합니다. 로그인 후 다시 시도해주세요.");
+        }
+
+        await axios.delete(`/api/sub-todos?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
+        });
         return { id, todoId };
       } catch (error) {
         if (axios.isAxiosError(error)) {
