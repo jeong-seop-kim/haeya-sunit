@@ -131,7 +131,7 @@ export default function StatsPage() {
         {/* 주간 통계 */}
         <div className="mb-8">
           <h2 className="text-xl font-bold mb-4">주간 통계</h2>
-          <div className="grid grid-cols-7 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2">
             {stats.weeklyStats.map((day, index) => (
               <div
                 key={index}
@@ -155,7 +155,7 @@ export default function StatsPage() {
         {/* 월간 통계 */}
         <div>
           <h2 className="text-xl font-bold mb-4">월간 통계</h2>
-          <div className="grid grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
             {stats.monthlyStats.map((month, index) => (
               <div
                 key={index}
