@@ -2,9 +2,18 @@
 
 import { useAuthStore } from "@/store/auth";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const { login } = useAuthStore();
+  const { user } = useAuthStore();
+  console.log("🚀 ~ LoginPage ~ user:", user);
+
+  const fetchUser = useAuthStore((s) => s.fetchUser);
+
+  useEffect(() => {
+    fetchUser().catch(console.error); // 로그인한 경우만 성공
+  }, [fetchUser]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900">
@@ -18,15 +27,13 @@ export default function LoginPage() {
             priority
           />
         </div>
-        <h1 className="text-4xl font-bold text-orange-500 dark:text-orange-400">
-          해야
+        <h1 className="italic text-4xl font-bold text-orange-500 dark:text-orange-400">
+          HaeYa
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 text-lg">
-          해야 할 일을 관리하는 애플리케이션
-        </p>
+
         <button
           onClick={login}
-          className="flex items-center justify-center space-x-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          className="mx-auto flex items-center justify-center space-x-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         >
           <Image
             src="/google.svg"

@@ -8,12 +8,22 @@ interface AuthState {
   setUser: (user: User | null) => void;
   login: () => Promise<void>;
   logout: () => Promise<void>;
+  fetchUser: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isLoggedIn: false,
   setUser: (user) => set({ user, isLoggedIn: !!user }),
+  fetchUser: async () => {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+    if (error) throw error;
+    set({ user, isLoggedIn: !!user });
+  },
+
   login: async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
