@@ -75,30 +75,30 @@ const TodoItem = memo(function TodoItem({
   return (
     <>
       <div className="space-y-4">
-        <div className="p-4  hover:bg-orange-50 hover:bg-opacity-10 hover:border-orange-300 transition-all border border-orange-200 rounded-lg font-pretendard">
+        <div className="p-4  hover:bg-slate-50 hover:bg-opacity-10 hover:border-slate-300 transition-all border border-slate-200 rounded-lg font-pretendard">
           <div className="flex items-start gap-4">
             <button
               onClick={() => onToggle(id)}
-              className="mt-1 w-6 h-6 text-orange-400 hover:text-orange-600 transition-colors"
+              className="mt-1 w-6 h-6 text-slate-400 hover:text-slate-600 transition-colors"
             >
               <CheckIcon checked={completed} />
             </button>
             <div className="flex-1">
               <h3
                 className={`text-lg font-semibold ${
-                  completed ? "line-through text-orange-300" : "text-orange-600"
+                  completed ? "line-through text-slate-300" : "text-slate-600"
                 }`}
               >
                 {title}
               </h3>
               <p
                 className={`mt-1 ${
-                  completed ? "line-through text-orange-300" : "text-orange-500"
+                  completed ? "line-through text-slate-300" : "text-slate-500"
                 }`}
               >
                 {content}
               </p>
-              <div className="mt-2 space-x-2 text-sm text-orange-400">
+              <div className="mt-2 space-x-2 text-sm text-slate-400">
                 {has_start_date && start_date && (
                   <span>시작: {formatDate(new Date(start_date))}</span>
                 )}
@@ -113,13 +113,13 @@ const TodoItem = memo(function TodoItem({
             <div className="flex gap-2">
               <button
                 onClick={() => setIsEditModalOpen(true)}
-                className="p-2 text-orange-400 hover:text-orange-600 transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
               >
                 수정
               </button>
               <button
                 onClick={() => onDelete(id)}
-                className="p-2 text-orange-400 hover:text-orange-600 transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
               >
                 삭제
               </button>
@@ -130,11 +130,11 @@ const TodoItem = memo(function TodoItem({
             {sub_todos?.map((subItem) => (
               <div
                 key={subItem.id}
-                className="flex items-start gap-4 p-3 bg-orange-50/50 border border-orange-100 rounded-lg mb-2"
+                className="flex items-start gap-4 p-3 bg-slate-50/50 border border-slate-100 rounded-lg mb-2"
               >
                 <button
                   onClick={() => onToggleSubTodo(id, subItem.id)}
-                  className="mt-1 w-5 h-5 text-orange-400 hover:text-orange-600 transition-colors"
+                  className="mt-1 w-5 h-5 text-slate-400 hover:text-slate-600 transition-colors"
                 >
                   <CheckIcon checked={subItem.completed} />
                 </button>
@@ -142,8 +142,8 @@ const TodoItem = memo(function TodoItem({
                   <h4
                     className={`font-medium ${
                       subItem.completed
-                        ? "line-through text-orange-300"
-                        : "text-orange-600"
+                        ? "line-through text-slate-300"
+                        : "text-slate-600"
                     }`}
                   >
                     {subItem.title}
@@ -151,8 +151,8 @@ const TodoItem = memo(function TodoItem({
                   <p
                     className={`mt-1 text-sm ${
                       subItem.completed
-                        ? "line-through text-orange-300"
-                        : "text-orange-500"
+                        ? "line-through text-slate-300"
+                        : "text-slate-500"
                     }`}
                   >
                     {subItem.content}
@@ -160,7 +160,7 @@ const TodoItem = memo(function TodoItem({
                 </div>
                 <button
                   onClick={() => onDeleteSubTodo(id, subItem.id)}
-                  className="p-2 text-orange-400 hover:text-orange-600 transition-colors"
+                  className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
                 >
                   삭제
                 </button>
@@ -174,25 +174,25 @@ const TodoItem = memo(function TodoItem({
                   placeholder="서브 항목 제목"
                   value={subTitle}
                   onChange={(e) => setSubTitle(e.target.value)}
-                  className="w-full p-2  border border-orange-200 rounded-lg focus:outline-none focus:border-orange-400 text-orange-600 placeholder-orange-300"
+                  className="w-full p-2  border border-slate-200 rounded-lg focus:outline-none focus:border-slate-400 text-slate-600 placeholder-slate-300"
                 />
                 <textarea
                   placeholder="서브 항목 내용"
                   value={subContent}
                   onChange={(e) => setSubContent(e.target.value)}
-                  className="w-full p-2  border border-orange-200 rounded-lg focus:outline-none focus:border-orange-400 text-orange-600 placeholder-orange-300 min-h-[60px]"
+                  className="w-full p-2  border border-slate-200 rounded-lg focus:outline-none focus:border-slate-400 text-slate-600 placeholder-slate-300 min-h-[60px]"
                 />
                 <div className="flex gap-2">
                   <button
                     type="submit"
-                    className="px-3 py-1 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors text-sm"
+                    className="px-3 py-1 bg-slate-500 text-white rounded-lg hover:bg-slate-600 transition-colors text-sm"
                   >
                     추가
                   </button>
                   <button
                     type="button"
                     onClick={() => setIsAddingSubTodo(false)}
-                    className="px-3 py-1 bg-orange-100 text-orange-500 rounded-lg hover:bg-orange-200 transition-colors text-sm"
+                    className="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg hover:bg-slate-200 transition-colors text-sm"
                   >
                     취소
                   </button>
@@ -201,7 +201,7 @@ const TodoItem = memo(function TodoItem({
             ) : (
               <button
                 onClick={() => setIsAddingSubTodo(true)}
-                className="mt-2 px-3 py-1 bg-orange-100 text-orange-500 rounded-lg hover:bg-orange-200 transition-colors text-sm"
+                className="mt-2 px-3 py-1 bg-slate-100 text-slate-500 rounded-lg hover:bg-slate-200 transition-colors text-sm"
               >
                 + 서브 항목 추가
               </button>

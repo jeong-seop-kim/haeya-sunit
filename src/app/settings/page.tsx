@@ -47,7 +47,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen  dark:bg-gray-900 text-orange-500 dark:text-orange-400 p-8">
+    <div className="min-h-screen  dark:bg-gray-900 text-slate-500 dark:text-slate-400 p-8">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl font-bold mb-2">설정</h1>
@@ -57,15 +57,15 @@ export default function SettingsPage() {
         </div>
 
         {/* 테마 설정 */}
-        <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg mb-6">
+        <div className="bg-slate-50 dark:bg-slate-900/20 p-6 rounded-lg mb-6">
           <h2 className="text-lg font-semibold mb-4">테마</h2>
           <div className="flex space-x-4">
             <button
               onClick={() => handleThemeChange("light")}
               className={`px-4 py-2 rounded-lg ${
                 theme === "light"
-                  ? "bg-orange-500 text-white"
-                  : " dark:bg-gray-800 text-orange-500 border border-orange-200 dark:border-orange-700"
+                  ? "bg-slate-500 text-white"
+                  : " dark:bg-gray-800 text-slate-500 border border-slate-200 dark:border-slate-700"
               }`}
             >
               라이트 모드
@@ -74,8 +74,8 @@ export default function SettingsPage() {
               onClick={() => handleThemeChange("dark")}
               className={`px-4 py-2 rounded-lg ${
                 theme === "dark"
-                  ? "bg-orange-500 text-white"
-                  : " dark:bg-gray-800 text-orange-500 border border-orange-200 dark:border-orange-700"
+                  ? "bg-slate-500 text-white"
+                  : " dark:bg-gray-800 text-slate-500 border border-slate-200 dark:border-slate-700"
               }`}
             >
               다크 모드
@@ -84,7 +84,7 @@ export default function SettingsPage() {
         </div>
 
         {/* 알림 설정 */}
-        <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg mb-6">
+        <div className="bg-slate-50 dark:bg-slate-900/20 p-6 rounded-lg mb-6">
           <h2 className="text-lg font-semibold mb-4">알림</h2>
           <div className="flex items-center justify-between">
             <div>
@@ -97,7 +97,7 @@ export default function SettingsPage() {
               onClick={handleNotificationToggle}
               className={`relative inline-flex h-6 w-11 items-center rounded-full ${
                 settings.notifications
-                  ? "bg-orange-500"
+                  ? "bg-slate-500"
                   : "bg-gray-200 dark:bg-gray-700"
               }`}
             >
@@ -111,7 +111,7 @@ export default function SettingsPage() {
         </div>
 
         {/* 기본 설정 */}
-        <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg mb-6">
+        <div className="bg-slate-50 dark:bg-slate-900/20 p-6 rounded-lg mb-6">
           <h2 className="text-lg font-semibold mb-4">기본 설정</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -125,7 +125,7 @@ export default function SettingsPage() {
                 onClick={handleDefaultStartDateToggle}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full ${
                   settings.defaultStartDate
-                    ? "bg-orange-500"
+                    ? "bg-slate-500"
                     : "bg-gray-200 dark:bg-gray-700"
                 }`}
               >
@@ -142,7 +142,7 @@ export default function SettingsPage() {
         </div>
 
         {/* 아카이브 설정 */}
-        <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg">
+        <div className="bg-slate-50 dark:bg-slate-900/20 p-6 rounded-lg">
           <h2 className="text-lg font-semibold mb-4">아카이브</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -156,7 +156,7 @@ export default function SettingsPage() {
                 onClick={handleAutoArchiveToggle}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full ${
                   settings.autoArchive
-                    ? "bg-orange-500"
+                    ? "bg-slate-500"
                     : "bg-gray-200 dark:bg-gray-700"
                 }`}
               >
@@ -180,7 +180,7 @@ export default function SettingsPage() {
                   onChange={(e) =>
                     handleArchiveDaysChange(Number(e.target.value))
                   }
-                  className="px-3 py-1 rounded-lg border border-orange-200 dark:border-orange-700  dark:bg-gray-800"
+                  className="px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700  dark:bg-gray-800"
                 >
                   <option value="7">7일</option>
                   <option value="14">14일</option>

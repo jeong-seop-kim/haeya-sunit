@@ -149,7 +149,7 @@ export default function OverdueTodosPage() {
   });
 
   return (
-    <div className="min-h-screen  dark:bg-gray-900 text-orange-500 dark:text-orange-400 p-8">
+    <div className="min-h-screen  dark:bg-gray-900 text-slate-500 dark:text-slate-400 p-8">
       <div className="max-w-2xl mx-auto">
         <Header onAddClick={() => setIsModalOpen(true)} />
         {(error || fetchError) && (
@@ -169,8 +169,8 @@ export default function OverdueTodosPage() {
           </div>
         ) : (
           <div className="space-y-6">
-            <div className="bg-orange-50 p-4 rounded-lg">
-              <p className="text-orange-700">
+            <div className="bg-slate-50 p-4 rounded-lg">
+              <p className="text-slate-700">
                 ⚠️ {overdueTodos?.length}개의 지난 할 일이 있습니다.
               </p>
             </div>

@@ -95,7 +95,7 @@ export default function StatsPage() {
   const stats = calculateStats(todos);
 
   return (
-    <div className="min-h-screen  dark:bg-gray-900 text-orange-500 dark:text-orange-400 p-8">
+    <div className="min-h-screen  dark:bg-gray-900 text-slate-500 dark:text-slate-400 p-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl font-bold mb-2">통계 및 회고</h1>
@@ -112,15 +112,15 @@ export default function StatsPage() {
 
         {/* 전체 통계 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-orange-50 p-6 rounded-lg">
+          <div className="bg-slate-50 p-6 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">전체 할 일</h3>
             <p className="text-3xl font-bold">{stats.totalTodos}개</p>
           </div>
-          <div className="bg-orange-50 p-6 rounded-lg">
+          <div className="bg-slate-50 p-6 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">완료된 할 일</h3>
             <p className="text-3xl font-bold">{stats.completedTodos}개</p>
           </div>
-          <div className="bg-orange-50 p-6 rounded-lg">
+          <div className="bg-slate-50 p-6 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">완료율</h3>
             <p className="text-3xl font-bold">
               {stats.completionRate.toFixed(1)}%
@@ -135,7 +135,7 @@ export default function StatsPage() {
             {stats.weeklyStats.map((day, index) => (
               <div
                 key={index}
-                className="bg-orange-50 p-4 rounded-lg text-center"
+                className="bg-slate-50 p-4 rounded-lg text-center"
               >
                 <p className="font-semibold mb-2">{day.date}</p>
                 <p className="text-sm text-gray-600">
@@ -143,7 +143,7 @@ export default function StatsPage() {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                   <div
-                    className="bg-orange-500 h-2 rounded-full"
+                    className="bg-slate-500 h-2 rounded-full"
                     style={{ width: `${day.rate}%` }}
                   ></div>
                 </div>
@@ -159,7 +159,7 @@ export default function StatsPage() {
             {stats.monthlyStats.map((month, index) => (
               <div
                 key={index}
-                className="bg-orange-50 p-4 rounded-lg text-center"
+                className="bg-slate-50 p-4 rounded-lg text-center"
               >
                 <p className="font-semibold mb-2">{month.date}</p>
                 <p className="text-sm text-gray-600">
@@ -167,7 +167,7 @@ export default function StatsPage() {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                   <div
-                    className="bg-orange-500 h-2 rounded-full"
+                    className="bg-slate-500 h-2 rounded-full"
                     style={{ width: `${month.rate}%` }}
                   ></div>
                 </div>

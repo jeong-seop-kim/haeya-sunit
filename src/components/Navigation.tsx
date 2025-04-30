@@ -47,7 +47,7 @@ export default function Navigation() {
   return (
     <>
       {/* 데스크톱 네비게이션 */}
-      <nav className="hidden lg:block w-64 h-screen bg-white dark:bg-gray-900 border-r border-orange-100 dark:border-orange-900 p-4">
+      <nav className="hidden lg:block w-64 h-screen bg-white dark:bg-gray-900 border-r border-slate-100 dark:border-slate-900 p-4">
         <div className="space-y-2">
           {navItems.map((item) => (
             <Link
@@ -56,7 +56,7 @@ export default function Navigation() {
               draggable={false}
               className={`select-none flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
                 pathname === item.href
-                  ? "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
+                  ? "bg-slate-50 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400"
                   : "text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white hover:text-gray-900 dark:hover:text-gray-900"
               }`}
             >
@@ -69,7 +69,7 @@ export default function Navigation() {
               href="/profile"
               className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
                 pathname === "/profile"
-                  ? "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
+                  ? "bg-slate-50 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400"
                   : "text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white hover:text-gray-900 dark:hover:text-gray-900"
               }`}
             >
@@ -83,7 +83,7 @@ export default function Navigation() {
       </nav>
 
       {/* 모바일 네비게이션 */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-orange-100 dark:border-orange-900 p-2">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-slate-100 dark:border-slate-900 p-2">
         <div className="flex justify-around items-center">
           {navItems.map((item) => (
             <Link
@@ -92,7 +92,7 @@ export default function Navigation() {
               draggable={false}
               className={`flex flex-col items-center space-y-1 px-2 py-1 rounded-lg transition-colors ${
                 pathname === item.href
-                  ? "text-orange-600 dark:text-orange-400"
+                  ? "text-slate-600 dark:text-slate-400"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -105,7 +105,7 @@ export default function Navigation() {
               href="/profile"
               className={`flex flex-col items-center space-y-1 px-2 py-1 rounded-lg transition-colors ${
                 pathname === "/profile"
-                  ? "text-orange-600 dark:text-orange-400"
+                  ? "text-slate-600 dark:text-slate-400"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >

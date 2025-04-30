@@ -14,7 +14,7 @@ const Header = memo(function Header({ onAddClick }: HeaderProps) {
         </div>
         <button
           onClick={onAddClick}
-          className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center text-2xl hover:bg-orange-600 transition-colors font-pretendard"
+          className="w-12 h-12 pb-[3px] bg-slate-500 text-white rounded-full flex items-center justify-center text-2xl hover:bg-slate-600 transition-colors font-pretendard"
         >
           +
         </button>

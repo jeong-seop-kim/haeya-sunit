@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "./providers";
 
@@ -45,13 +46,24 @@ export const metadata: Metadata = {
   },
 };
 
+const pretendard = localFont({
+  src: "../static/fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html
+      lang="ko"
+      suppressHydrationWarning
+      className={`${pretendard.variable}`}
+    >
       <body className="font-pretendard antialiased">
         <Providers>
           <div className="flex min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">

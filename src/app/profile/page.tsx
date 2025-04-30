@@ -37,7 +37,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-orange-500 dark:text-orange-400 p-8">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-slate-500 dark:text-slate-400 p-8">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold mb-8">프로필</h1>
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 space-y-4">
@@ -61,7 +61,7 @@ export default function ProfilePage() {
           </div>
           <button
             onClick={logout}
-            className="w-full mt-6 bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors"
+            className="w-full mt-6 bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors"
           >
             로그아웃
           </button>

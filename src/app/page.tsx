@@ -20,7 +20,7 @@ export default function LoginPage() {
             priority
           />
         </div>
-        <h1 className="italic text-4xl font-bold text-orange-500 dark:text-orange-400">
+        <h1 className="italic text-4xl font-bold text-slate-500 dark:text-slate-400">
           HaeYa
         </h1>
 
