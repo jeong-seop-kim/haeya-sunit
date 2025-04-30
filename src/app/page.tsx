@@ -2,18 +2,11 @@
 
 import { useAuthStore } from "@/store/auth";
 import Image from "next/image";
-import { useEffect } from "react";
 
 export default function LoginPage() {
   const { login } = useAuthStore();
   const { user } = useAuthStore();
   console.log("🚀 ~ LoginPage ~ user:", user);
-
-  const fetchUser = useAuthStore((s) => s.fetchUser);
-
-  useEffect(() => {
-    fetchUser().catch(console.error); // 로그인한 경우만 성공
-  }, [fetchUser]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900">

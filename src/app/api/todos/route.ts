@@ -7,6 +7,7 @@ export async function GET() {
   const {
     data: { session },
   } = await supabase.auth.getSession();
+  console.log("🚀 ~ GET ~ session:", session);
 
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
