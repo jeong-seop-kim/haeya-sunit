@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import TopNavigation from "@/components/TopNavigation";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -66,9 +67,14 @@ export default function RootLayout({
     >
       <body className="font-pretendard antialiased">
         <Providers>
-          <div className="flex min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-            <Navigation />
-            <main className="flex-1">{children}</main>
+          <div className="flex h-screen bg-white dark:bg-gray-900 transition-colors duration-200 overflow-hidden">
+            <div className="hidden lg:block w-64 h-full mt-[63.3px]">
+              <Navigation />
+            </div>
+            <div className="flex-1 flex flex-col h-full">
+              <TopNavigation />
+              <main className="flex-1 overflow-y-auto pt-16">{children}</main>
+            </div>
           </div>
         </Providers>
       </body>
