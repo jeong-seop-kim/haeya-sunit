@@ -3,11 +3,12 @@
 import { supabase } from "@/lib/supabase";
 import { useAuthStore } from "@/store/auth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProfilePage() {
   const { user, setUser, logout } = useAuthStore();
   const router = useRouter();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -31,6 +32,17 @@ export default function ProfilePage() {
       subscription.unsubscribe();
     };
   }, [setUser, router]);
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await logout();
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   if (!user) {
     return null;
@@ -60,10 +72,11 @@ export default function ProfilePage() {
             </p>
           </div>
           <button
-            onClick={logout}
-            className="w-full mt-6 bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors"
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="w-full mt-6 bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            로그아웃
+            {isLoggingOut ? "로그아웃 중..." : "로그아웃"}
           </button>
         </div>
       </div>

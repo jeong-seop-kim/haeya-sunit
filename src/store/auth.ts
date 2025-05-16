@@ -36,17 +36,52 @@ export const useAuthStore = create<AuthState>((set) => ({
     });
     if (response?.error) throw response.error;
   },
+
   logout: async () => {
-    const { error } = await supabase.auth.signOut();
+    try {
+      // 1. Supabase 세션 로그아웃
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) throw signOutError;
 
-    // 🔐 Supabase 세션 토큰이 남아있는 경우 강제로 초기화 (클라이언트 측 캐시 방지용)
-    await supabase.auth.setSession({
-      access_token: "",
-      refresh_token: "",
-    });
+      // 2. 세션 토큰 초기화
+      await supabase.auth.setSession({
+        access_token: "",
+        refresh_token: "",
+      });
 
-    if (error) throw error;
+      // 3. 로컬 스토리지 클리어
+      if (typeof window !== "undefined") {
+        // Supabase 관련 로컬 스토리지 항목 제거
+        localStorage.removeItem("sb-kxuixxexrdjabszzheoz-auth-token");
+        localStorage.removeItem("sb-kxuixxexrdjabszzheoz-refresh-token");
 
-    set({ user: null, isLoggedIn: false });
+        // Supabase 쿠키 제거
+        document.cookie.split(";").forEach((c) => {
+          document.cookie = c
+            .replace(/^ +/, "")
+            .replace(
+              /=.*/,
+              "=;expires=" + new Date().toUTCString() + ";path=/"
+            );
+        });
+
+        // 특정 Supabase 쿠키 명시적 제거
+        document.cookie =
+          "sb-kxuixxexrdjabszzheoz-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie =
+          "sb-kxuixxexrdjabszzheoz-refresh-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      }
+
+      // 4. 상태 초기화
+      set({ user: null, isLoggedIn: false });
+
+      // 5. 페이지 새로고침으로 모든 상태 초기화
+      if (typeof window !== "undefined") {
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      throw error;
+    }
   },
 }));

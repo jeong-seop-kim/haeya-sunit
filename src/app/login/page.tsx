@@ -1,58 +1,42 @@
 "use client";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useAuthStore } from "@/store/auth";
+import Image from "next/image";
 
 export default function LoginPage() {
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const supabase = createClientComponentClient();
-
-  const handleGoogleLogin = async () => {
-    setError(null);
-    setLoading(true);
-
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) throw error;
-    } catch (error) {
-      setError("로그인에 실패했습니다. 다시 시도해주세요.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { login } = useAuthStore();
+  const { user } = useAuthStore();
+  console.log("🚀 ~ LoginPage ~ user:", user);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            로그인
-          </h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900">
+      <div className="text-center space-y-8">
+        <div className="relative w-32 h-32 mx-auto">
+          <Image
+            src="/sun.png"
+            alt="해야 로고"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
-        <div className="mt-8 space-y-6">
-          {error && (
-            <div className="text-red-500 text-sm text-center">{error}</div>
-          )}
+        <h1 className="italic text-4xl font-bold text-slate-500 dark:text-slate-400">
+          HaeYa
+        </h1>
 
-          <div>
-            <button
-              onClick={handleGoogleLogin}
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-            >
-              {loading ? "로그인 중..." : "Google로 로그인"}
-            </button>
-          </div>
-        </div>
+        <button
+          onClick={login}
+          className="mx-auto flex items-center justify-center space-x-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          <Image
+            src="/google.svg"
+            alt="Google"
+            width={20}
+            height={20}
+            className="w-5 h-5"
+          />
+          <span>Google로 계속하기</span>
+        </button>
       </div>
     </div>
   );
