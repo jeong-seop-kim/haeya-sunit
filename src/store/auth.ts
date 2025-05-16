@@ -32,6 +32,11 @@ export const useAuthStore = create<AuthState>((set) => ({
           process.env.NODE_ENV === "development"
             ? "http://localhost:3000/auth/callback"
             : "https://haeya-sunit.vercel.app/auth/callback",
+        scopes: "email profile https://www.googleapis.com/auth/calendar",
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
       },
     });
     if (response?.error) throw response.error;

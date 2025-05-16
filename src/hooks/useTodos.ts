@@ -89,6 +89,26 @@ export function useTodos() {
             Authorization: `Bearer ${session.access_token}`,
           },
         });
+
+        // Google Calendar에 이벤트 추가 (서버 API 사용)
+        try {
+          await fetch("/api/google-calendar", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: newTodo.title,
+              description: newTodo.content,
+              due_date: newTodo.due_date || new Date().toISOString(),
+              start_date: newTodo.start_date,
+            }),
+          });
+        } catch (error) {
+          console.error("Google Calendar 이벤트 추가 실패:", error);
+          // 캘린더 추가 실패는 투두 생성에 영향을 주지 않도록 함
+        }
+
         return data;
       } catch (error) {
         if (axios.isAxiosError(error)) {
