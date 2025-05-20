@@ -68,7 +68,7 @@ export default function RootLayout({
       <body className="font-pretendard antialiased">
         <Providers>
           <div className="flex h-screen bg-white dark:bg-gray-900 transition-colors duration-200 overflow-hidden">
-            <div className="hidden lg:block w-64 h-full mt-[63.3px]">
+            <div className="lg:w-64 h-full mt-[63.3px]">
               <Navigation />
             </div>
             <div className="flex-1 flex flex-col h-full">

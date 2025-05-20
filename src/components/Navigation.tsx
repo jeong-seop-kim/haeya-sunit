@@ -47,7 +47,7 @@ export default function Navigation() {
   return (
     <>
       {/* 데스크톱 네비게이션 */}
-      <nav className="h-full bg-white dark:bg-gray-900 border-r border-slate-100 dark:border-slate-900 p-4">
+      <nav className="hidden lg:block h-full bg-white dark:bg-gray-900 border-r border-slate-100 dark:border-slate-900 p-4">
         <div className="space-y-2">
           {navItems.map((item) => (
             <Link
