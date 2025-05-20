@@ -39,7 +39,7 @@ export default function TopNavigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-16 border-b bg-white dark:bg-gray-900 border-slate-200 dark:border-slate-800">
+    <nav className="hidden lg:block fixed top-0 left-0 right-0 z-50 h-16 border-b bg-white dark:bg-gray-900 border-slate-200 dark:border-slate-800">
       <div className="w-full px-[16px] flex h-full items-center justify-end">
         <div className="flex items-center gap-4">
           {user && (
