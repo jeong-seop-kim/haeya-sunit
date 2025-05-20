@@ -83,7 +83,7 @@ export default function Navigation() {
       </nav>
 
       {/* 모바일 네비게이션 */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-slate-100 dark:border-slate-900 p-2">
+      <nav className=" lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-slate-100 dark:border-slate-900 p-2">
         <div className="flex justify-around items-center">
           {navItems.map((item) => (
             <Link

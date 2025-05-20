@@ -73,7 +73,9 @@ export default function RootLayout({
             </div>
             <div className="flex-1 flex flex-col h-full">
               <TopNavigation />
-              <main className="flex-1 overflow-y-auto pt-16">{children}</main>
+              <main className="flex-1 overflow-y-auto lg:pt-16">
+                {children}
+              </main>
             </div>
           </div>
         </Providers>

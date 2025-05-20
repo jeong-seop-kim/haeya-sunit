@@ -47,7 +47,7 @@ const TodoList = memo(function TodoList({
   onDeleteSubTodo,
 }: TodoListProps) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 pb-[60px]">
       {todos?.map((todo) => (
         <TodoItem
           key={todo.id}
