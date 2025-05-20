@@ -96,7 +96,12 @@ export async function DELETE(request: Request) {
   }
 
   const userId = session.user.id;
-  const { id } = await request.json();
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  if (!id) {
+    return NextResponse.json({ error: "ID is required" }, { status: 400 });
+  }
 
   const { error } = await supabase
     .from("todos")
