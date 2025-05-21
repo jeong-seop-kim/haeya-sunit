@@ -25,7 +25,7 @@ export default function TodoModal({
   onSubmit,
   initialTitle = "",
   initialContent = "",
-  initialDueDate = null,
+  initialDueDate = new Date(),
   initialStartDate = null,
   initialHasStartDate = false,
 }: TodoModalProps) {
